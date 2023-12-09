@@ -18,5 +18,6 @@ export default function PageWrapper({ children }: IPageWrapper) {
 }
 // The number of Header minus footer
 const SBodyWrapper = styled.div`
+  height: calc(100vh - 53px - 53px);
   background-color: ${(props) => props.theme.colors.base.baseContrast};
 `;
