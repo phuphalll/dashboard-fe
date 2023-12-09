@@ -1,9 +1,9 @@
 interface DataItem {
-  value: number;
+  value: string;
   growth: string;
   gap: string;
   margin: string;
-  dist: number;
+  dist: string;
   budget: string[];
 }
 
