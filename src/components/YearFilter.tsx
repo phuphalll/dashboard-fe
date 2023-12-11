@@ -27,10 +27,18 @@ const YearFilter = ({
   return (
     <SYearFilterWrapper>
       <div>
-        <FilterAltOutlinedIcon />
+        <FilterAltOutlinedIcon
+          sx={{
+            width: "1rem",
+            color: colorsTheme.greyscale["50"],
+          }}
+        />
       </div>
       <SElementWrapper>Compare Years:</SElementWrapper>
-      <FormControl fullWidth sx={{ minWidth: "7.5rem" }}>
+      <FormControl
+        fullWidth
+        sx={{ minWidth: "7.5rem", transform: "scale(0.8)" }}
+      >
         <Select
           sx={{
             boxShadow: "none",
@@ -60,8 +68,11 @@ const YearFilter = ({
           ))}
         </Select>
       </FormControl>
-      <SElementWrapper style={{ padding: "0rem 1rem" }}> to </SElementWrapper>
-      <FormControl fullWidth sx={{ minWidth: "7.5rem" }}>
+      <SElementWrapper> to </SElementWrapper>
+      <FormControl
+        fullWidth
+        sx={{ minWidth: "7.5rem", transform: "scale(0.8)" }}
+      >
         <Select
           sx={{
             boxShadow: "none",
@@ -100,8 +111,9 @@ const YearFilter = ({
 export default YearFilter;
 
 const SYearFilterWrapper = styled.div`
-  background-color: white;
-  padding: 10px;
+  max-height: 1.5rem;
+  background-color: ${(props) => props.theme.colors.base["base"]};
+  padding: 10px 0px 10px 5px;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -111,6 +123,6 @@ const SYearFilterWrapper = styled.div`
 `;
 
 const SElementWrapper = styled.div`
-  padding: 0rem 0.5rem;
+  padding: 0rem 0.1rem;
   white-space: nowrap;
 `;
