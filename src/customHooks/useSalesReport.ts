@@ -1,13 +1,18 @@
 import { useQuery } from "@tanstack/react-query";
 import salesServices from "../modules/sales";
 
-function useGetSales() {
+interface IUseGetSales {
+  startDate: string;
+  endDate: string;
+}
+
+function useGetSales({ startDate, endDate }: IUseGetSales) {
   return useQuery({
     staleTime: 60000,
     retry: 3,
-    queryKey: ["fetchSales"],
+    queryKey: ["fetchSales", startDate, endDate],
     queryFn: async () => {
-      return await salesServices.getSalesReport(null, null);
+      return await salesServices.getSalesReport(startDate, endDate);
     },
   });
 }
