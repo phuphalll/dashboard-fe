@@ -1,4 +1,4 @@
-interface DataItem {
+interface IDataItem {
   value: string;
   growth: string;
   gap: string;
@@ -7,11 +7,11 @@ interface DataItem {
   budget: string[];
 }
 
-interface YearData {
+interface IYearData {
   year: string;
-  data: DataItem[];
+  data: IDataItem[];
 }
 
-type YearlyData = YearData[];
+type TYearlyData = IYearData[];
 
-export type { DataItem, YearData, YearlyData };
+export type { IDataItem, IYearData, TYearlyData };
