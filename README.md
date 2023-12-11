@@ -8,7 +8,7 @@
 
 1. Yearly dashboard Table: Display a yearly basis. in a table format.
 2. Filter yearly basis: The capability to select specific years basis filter.
-3. Render Data: Display yearly data in the table list.
+3. Render Data: Display yearly Data in the table list.
 
 #### Functionality
 
@@ -64,4 +64,9 @@ After setting up your development environment, you can run the application local
 - Using Environment Variables:Development with utilizes .env.dev file. Note: You may have to setup `.env.dev` file
   ```
   npm run dev
+  ```
+- Run application from build bundle. Require `.env.dev` to be setup
+  ```
+  npm run build:dev
+  npm run serve
   ```
