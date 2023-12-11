@@ -22,7 +22,16 @@ export default function YearTable({ yearData, tableWidth }: IYearTable) {
 
   return (
     <TableContainer component={Paper} sx={{ overflowX: "auto" }}>
-      <Table sx={{ minWidth: tableWidth }} size="small" stickyHeader>
+      <Table
+        sx={{
+          minWidth: "400px",
+          "& th, & td": {
+            fontSize: "10px",
+          },
+        }}
+        size="small"
+        stickyHeader
+      >
         <TableHead>
           <TableRow>
             <TableCell
@@ -80,7 +89,7 @@ export default function YearTable({ yearData, tableWidth }: IYearTable) {
                   align="center"
                   sx={{
                     height: 10,
-                    padding: "5px",
+                    padding: 0,
                     color: colorsTheme.primary.text,
                   }}
                 >
@@ -89,7 +98,7 @@ export default function YearTable({ yearData, tableWidth }: IYearTable) {
                 <STableCell
                   sx={{
                     height: 10,
-                    padding: "5px",
+                    padding: 0,
                     color: isGreaterThanZero(row.growth)
                       ? colorsTheme.sucess.text
                       : colorsTheme.error.text,
@@ -102,7 +111,7 @@ export default function YearTable({ yearData, tableWidth }: IYearTable) {
                 <STableCell
                   sx={{
                     height: 10,
-                    padding: "5px",
+                    padding: 0,
                     color: isGreaterThanZero(row.gap)
                       ? colorsTheme.sucess.text
                       : colorsTheme.error.text,
@@ -113,14 +122,14 @@ export default function YearTable({ yearData, tableWidth }: IYearTable) {
                   {row.gap}
                 </STableCell>
                 <STableCell
-                  sx={{ height: 10, padding: "5px" }}
+                  sx={{ height: 10, padding: 0 }}
                   isgreybg={tmpBgstate}
                   align="center"
                 >
                   {row.margin}
                 </STableCell>
                 <STableCell
-                  sx={{ height: 10, padding: "5px" }}
+                  sx={{ height: 10, padding: 0 }}
                   isgreybg={tmpBgstate}
                   align="center"
                 >
@@ -129,8 +138,8 @@ export default function YearTable({ yearData, tableWidth }: IYearTable) {
                 <STableCell
                   sx={{
                     height: 10,
-                    paddingBottom: "7px",
-                    paddingTop: "7px",
+                    paddingBottom: 0,
+                    paddingTop: 0,
                   }}
                   isgreybg={tmpBgstate}
                   align="center"
@@ -159,7 +168,8 @@ const SBadge = styled.div`
   width: 40%;
   background-color: #f0f0f0;
   border-radius: 12px; /* Rounded corners */
-  padding: 4px 8px; /* Padding inside the badge */
+  padding: 2px 8px; /* Padding inside the badge */
+  margin: 4px 0px;
 `;
 
 const SBudgetWrapper = styled.div`
