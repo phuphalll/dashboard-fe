@@ -68,9 +68,13 @@ export default function Dashboard() {
         >
           <Box sx={{ display: "flex" }}>
             {isError ? (
-              <SErrorContainer>
+              <SWarningTextContainer>
                 Server error,This is unexpected. Please try again later
-              </SErrorContainer>
+              </SWarningTextContainer>
+            ) : rawSalesReport.length === 0 ? (
+              <SWarningTextContainer>
+                no records found on specific filter
+              </SWarningTextContainer>
             ) : (
               rawSalesReport.map((yearReport: IYearData, i) => (
                 <Table yearData={yearReport} key={i} />
@@ -107,7 +111,7 @@ const SFiltterWrapper = styled.div`
   padding: 1rem 2rem 0rem;
 `;
 
-const SErrorContainer = styled.div`
+const SWarningTextContainer = styled.div`
   justify-content: center;
   align-items: center;
   font-size: larger;

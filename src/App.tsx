@@ -1,5 +1,10 @@
 import styled from "styled-components";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
 
 import "./App.css";
 import PageWrapper from "./pages/page-helper/PageWrapper";
@@ -13,14 +18,14 @@ function App() {
         <AppContainer>
           <Routes>
             <Route
-              path="/dashboard"
+              path="/"
               element={
                 <PageWrapper>
                   <Dashboard />
                 </PageWrapper>
               }
             />
-            <Route path="/" element={<div>test</div>} />
+            <Route path="*" element={<Navigate to={{ pathname: "/" }} />} />
           </Routes>
         </AppContainer>
       </Providers>
