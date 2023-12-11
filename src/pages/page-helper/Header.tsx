@@ -1,12 +1,11 @@
 import styled from "styled-components";
-import hamburger from "../../assets/icons/hamburger.png";
-
+import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 export default function Header() {
   return (
     <SHeaderContainer>
       <SNav>
         <SLineWrapper>
-          <SHamburgerImage src={hamburger} alt="logo" />
+          <MenuOutlinedIcon />
         </SLineWrapper>
         <SMenuItem> Target Setup </SMenuItem>
       </SNav>
@@ -33,12 +32,6 @@ const SNav = styled.nav`
 
 const SLineWrapper = styled.div`
   position: relative;
-`;
-
-const SHamburgerImage = styled.img`
-  width: 16px;
-  height: 16px;
-  margin-right: 10px;
 `;
 
 const SMenuItem = styled.div`
