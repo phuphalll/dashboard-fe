@@ -6,97 +6,149 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
+import SwapVertOutlinedIcon from "@mui/icons-material/SwapVertOutlined";
 import styled from "styled-components";
+import { IYearData } from "../interfaces/sales.interface";
+import { isGreaterThanZero } from "../utils/number";
 
-function createData(
-  name: string,
-  calories: number,
-  fat: number,
-  carbs: number,
-  protein: number,
-  budget: number
-) {
-  return { name, calories, fat, carbs, protein, budget };
+const COLUMN_NAME = ["Value", "Growth%", "Gap%", "Margin", "Dist.", "Budget%`"];
+interface IYearTable {
+  yearData: IYearData;
+  tableWidth: string;
 }
 
-const rows = [
-  createData("Frozen yoghurt", 159, 6.0, 24, 4.0, 1.0),
-  createData("Ice cream sandwich", 237, 9.0, 37, 4.3, 1.0),
-  createData("Eclair", 262, 16.0, 24, 6.0, 1.0),
-  createData("Cupcake", 305, 3.7, 67, 4.3, 1.0),
-  createData("Gingerbread", 356, 16.0, 49, 3.9, 1.0),
-  createData("test", 356, 16.0, 49, 3.9, 1.0),
-];
-
-export default function MonthTable() {
+export default function YearTable({ yearData, tableWidth }: IYearTable) {
   const { colors: colorsTheme } = useTheme();
 
   return (
-    <TableContainer component={Paper}>
-      <Table size="small" aria-label="a a table">
+    <TableContainer component={Paper} sx={{ overflowY: "hidden" }}>
+      <Table
+        sx={{ minWidth: tableWidth, fontSize: "500px" }}
+        size="small"
+        stickyHeader
+      >
         <TableHead>
           <TableRow>
-            <TableCell align="center">2021</TableCell>
+            <TableCell
+              sx={{
+                color: colorsTheme.primary.text,
+                display: "flex",
+                flexDirection: "row",
+                borderBottom: "none",
+              }}
+              align="center"
+            >
+              {yearData.year}
+              <SwapVertOutlinedIcon
+                sx={{
+                  width: "12px",
+                  color: colorsTheme.greyscale["80"],
+                  paddingLeft: "5px",
+                }}
+              />
+            </TableCell>
           </TableRow>
           <TableRow>
-            <STablecolumn align="center">Value</STablecolumn>
-            <STablecolumn align="center">Growth%</STablecolumn>
-            <STablecolumn align="center">Gap%</STablecolumn>
-            <STablecolumn align="center">Margin </STablecolumn>
-            <STablecolumn align="center">Dist.</STablecolumn>
-            <STablecolumn align="center">Budget%`</STablecolumn>
+            {COLUMN_NAME.map((c, i) => (
+              <TableCell
+                key={i}
+                sx={{
+                  width: "20%",
+                  maxWidth: "20%",
+                  overflow: "hidden",
+                  textOverflow: "ellipsis",
+                  color: colorsTheme.greyscale["70"],
+                  backgroundColor: colorsTheme.greyscale["20"],
+                }}
+                align="center"
+              >
+                {c}
+              </TableCell>
+            ))}
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row, i) => {
+          {yearData.data.map((row, i) => {
             const tmpBgstate = [2, 3].includes(i % 4).toString();
             return (
               <TableRow
-                key={row.name}
+                key={i}
                 sx={{
                   "&:last-child td, &:last-child th": { border: 0 },
                 }}
               >
                 <STableCell
                   isgreybg={tmpBgstate}
-                  size={"20%"}
                   component="th"
                   scope="row"
                   align="center"
                   sx={{
+                    height: 10,
+                    padding: "5px",
                     color: colorsTheme.primary.text,
                   }}
                 >
-                  {row.name}
+                  {row.value}
                 </STableCell>
                 <STableCell
                   sx={{
-                    color: colorsTheme.sucess.text,
+                    height: 10,
+                    padding: "5px",
+                    color: isGreaterThanZero(row.growth)
+                      ? colorsTheme.sucess.text
+                      : colorsTheme.error.text,
                   }}
                   isgreybg={tmpBgstate}
-                  size={"20%"}
                   align="center"
                 >
-                  {row.calories}
+                  {row.growth}
                 </STableCell>
                 <STableCell
                   sx={{
-                    color: colorsTheme.sucess.text,
+                    height: 10,
+                    padding: "5px",
+                    color: isGreaterThanZero(row.gap)
+                      ? colorsTheme.sucess.text
+                      : colorsTheme.error.text,
                   }}
                   isgreybg={tmpBgstate}
-                  size={"20%"}
                   align="center"
                 >
-                  {row.fat}
+                  {row.gap}
                 </STableCell>
-                <STableCell isgreybg={tmpBgstate} size={"20%"} align="center">
-                  {row.carbs}
+                <STableCell
+                  sx={{ height: 10, padding: "5px" }}
+                  isgreybg={tmpBgstate}
+                  align="center"
+                >
+                  {row.margin}
                 </STableCell>
-                <STableCell isgreybg={tmpBgstate} size={"20%"} align="center">
-                  {row.protein}
+                <STableCell
+                  sx={{ height: 10, padding: "5px" }}
+                  isgreybg={tmpBgstate}
+                  align="center"
+                >
+                  {row.dist}
                 </STableCell>
-                <STableCell isgreybg={tmpBgstate} size={"20%"} align="center">
-                  {row.budget}
+                <STableCell
+                  sx={{
+                    height: 10,
+                    paddingBottom: "7px",
+                    paddingTop: "7px",
+                  }}
+                  isgreybg={tmpBgstate}
+                  align="center"
+                >
+                  <SBudgetWrapper
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "space-between",
+                    }}
+                  >
+                    {row.budget[0]}
+                    <SBadge>{row.budget[1]}</SBadge>
+                  </SBudgetWrapper>
                 </STableCell>
               </TableRow>
             );
@@ -107,27 +159,28 @@ export default function MonthTable() {
   );
 }
 
-const STableCell = styled(TableCell)<{
-  size: string;
-  isgreybg: string;
-}>`
-  width: ${(props) => props.size ?? "50%"};
-  max-width: ${(props) => props.size ?? "50%"};
-  overflow: hidden;
-  text-overflow: ellipsis;
-  background-color: ${(props) =>
-    props.isgreybg === "true"
-      ? props.theme.colors.base["baseContrast"]
-      : props.theme.colors.base["base"]};
+const SBadge = styled.div`
+  width: 40%;
+  background-color: #f0f0f0;
+  border-radius: 12px; /* Rounded corners */
+  padding: 4px 8px; /* Padding inside the badge */
 `;
 
-const STablecolumn = styled(TableCell)<{
-  size: string;
+const SBudgetWrapper = styled.div`
+  display: "flex";
+  align-items: "center";
+  justify-content: "space-between";
+`;
+
+const STableCell = styled(TableCell)<{
   isgreybg: string;
 }>`
   width: 20%;
   max-width: 20%;
   overflow: hidden;
   text-overflow: ellipsis;
-  background-color: ${(props) => props.theme.colors.greyscale["20"]};
+  background-color: ${(props) =>
+    props.isgreybg === "true"
+      ? props.theme.colors.base["baseContrast"]
+      : props.theme.colors.base["base"]};
 `;
