@@ -14,7 +14,7 @@ export default function Footer() {
           width: "100%",
           backgroundColor: colorsTheme.base.baseContrast,
           padding: "1rem 0",
-          borderTop: `5px solid ${colorsTheme.base.base}`,
+          borderTop: `1px solid ${colorsTheme.base.base}`,
         }}
       >
         <Container sx={{ display: "flex", justifyContent: "flex-end" }}>
@@ -42,7 +42,6 @@ const SContentWrapper = styled.div`
   display: flex;
   flex-direction: row;
   gap: 1.5rem;
-  font-size: 10px;
 
   &:last-child {
     margin-right: 0;

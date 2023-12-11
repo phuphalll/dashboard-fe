@@ -14,10 +14,9 @@ import { isGreaterThanZero } from "../utils/number";
 const COLUMN_NAME = ["Value", "Growth%", "Gap%", "Margin", "Dist.", "Budget%`"];
 interface IYearTable {
   yearData: IYearData;
-  tableWidth: string;
 }
 
-export default function YearTable({ yearData, tableWidth }: IYearTable) {
+export default function YearTable({ yearData }: IYearTable) {
   const { colors: colorsTheme } = useTheme();
 
   return (

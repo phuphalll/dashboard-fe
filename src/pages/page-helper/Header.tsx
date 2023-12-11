@@ -15,13 +15,13 @@ export default function Header() {
 
 const SHeaderContainer = styled.div`
   position: relative;
-  max-height: 60px;
+  max-height: 40px;
 `;
 
 const SNav = styled.nav`
   position: relative;
   flex-direction: row;
-  padding: 1rem 1rem;
+  padding: 0.5rem 1rem;
   height: auto;
   display: flex;
   justify-content: flex-start;
