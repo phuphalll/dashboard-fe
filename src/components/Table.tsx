@@ -21,12 +21,8 @@ export default function YearTable({ yearData, tableWidth }: IYearTable) {
   const { colors: colorsTheme } = useTheme();
 
   return (
-    <TableContainer component={Paper} sx={{ overflowY: "hidden" }}>
-      <Table
-        sx={{ minWidth: tableWidth, fontSize: "500px" }}
-        size="small"
-        stickyHeader
-      >
+    <TableContainer component={Paper} sx={{ overflowX: "auto" }}>
+      <Table sx={{ minWidth: tableWidth }} size="small" stickyHeader>
         <TableHead>
           <TableRow>
             <TableCell

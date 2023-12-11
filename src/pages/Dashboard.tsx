@@ -6,6 +6,8 @@ import Table from "../components/Table";
 import { useGetSales } from "../customHooks/useSalesReport";
 import { IYearData } from "../interfaces/sales.interface";
 import YearFilter from "../components/YearFilter";
+import LoadingSpinner from "../components/Loading";
+import toast from "react-hot-toast";
 
 export default function Dashboard() {
   const { colors: colorsTheme } = useTheme();
@@ -30,11 +32,16 @@ export default function Dashboard() {
     data: rawSalesReport = [],
     isError,
     isSuccess,
-    refetch,
   } = useGetSales({ startDate: startDate, endDate: endDate });
-
+  if (isSuccess) {
+    toast.success("🫡 Report fetch successfully!");
+  }
+  if (isError) {
+    toast.error("Internal server error: Unable to fetching report.");
+  }
   return (
     <SContainer>
+      {isFetching && <LoadingSpinner />}
       <SFiltterWrapper>
         <YearFilter
           handleStartDateChange={handleStartDateChange}
@@ -61,13 +68,19 @@ export default function Dashboard() {
           }}
         >
           <Box sx={{ display: "flex" }}>
-            {rawSalesReport.map((yearReport: IYearData, i) => (
-              <Table
-                yearData={yearReport}
-                key={i}
-                tableWidth={`${90 / rawSalesReport.length}vw`}
-              />
-            ))}
+            {isError ? (
+              <SErrorContainer>
+                Server error,This is unexpected. Please try again later
+              </SErrorContainer>
+            ) : (
+              rawSalesReport.map((yearReport: IYearData, i) => (
+                <Table
+                  yearData={yearReport}
+                  key={i}
+                  tableWidth={`${90 / rawSalesReport.length}vw`}
+                />
+              ))
+            )}
           </Box>
         </Box>
       </STableWrapper>
@@ -96,4 +109,11 @@ const SFiltterWrapper = styled.div`
   justify-content: flex-end;
   display: flex;
   padding: 1rem 2rem 0rem;
+`;
+
+const SErrorContainer = styled.div`
+  justify-content: center;
+  width: 100%;
+  align-items: center;
+  font-size: larger;
 `;
