@@ -53,8 +53,7 @@ export default function Dashboard() {
       <STableWrapper>
         <Box
           sx={{
-            minHeight: "320px",
-            // maxHeight: "720px",
+            minHeight: "20vh",
             overflowX: "auto",
             display: "flex",
             width: "100%",
@@ -74,11 +73,7 @@ export default function Dashboard() {
               </SErrorContainer>
             ) : (
               rawSalesReport.map((yearReport: IYearData, i) => (
-                <Table
-                  yearData={yearReport}
-                  key={i}
-                  tableWidth={`${90 / rawSalesReport.length}vw`}
-                />
+                <Table yearData={yearReport} key={i} />
               ))
             )}
           </Box>
@@ -101,6 +96,7 @@ const SContainer = styled.div`
 
 const STableWrapper = styled.div`
   padding: 2rem;
+  padding-top: 1rem;
   /* overflow: auto;
   height: 100%; */
 `;
@@ -113,7 +109,9 @@ const SFiltterWrapper = styled.div`
 
 const SErrorContainer = styled.div`
   justify-content: center;
-  width: 100%;
   align-items: center;
   font-size: larger;
+  width: 90vw;
+  min-height: 20vh;
+  display: flex;
 `;
