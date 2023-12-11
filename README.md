@@ -1,46 +1,67 @@
-# Getting Started with Create React App
+# React TypeScript Dashboard Application
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### Objectives
 
-## Available Scripts
+    The goal of this project is to develop a Dashboard application using React with TypeScript to showcase development skills and experience.
 
-In the project directory, you can run:
+#### Key Features
 
-### `npm start`
+1. Yearly dashboard Table: Display a yearly basis. in a table format.
+2. Filter yearly basis: The capability to select specific years basis filter.
+3. Render Data: Display yearly data in the table list.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+#### Functionality
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Get yearly report: Filter yearly report.
 
-### `npm test`
+#### List Yearly data
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Ability to search and compare the data with separate data table.
 
-### `npm run build`
+# Local Development
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Prerequisites
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- Node.js 20.x version
+- Typescript: 4.9.5
+- NPM (Comes with Node.js)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Setup and Installation
 
-### `npm run eject`
+Before you can run the application locally, you need to set up your development environment. Follow these steps to get started:
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+- Clone the Repository: If you haven't already, clone the repository to your local machine.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+  ```
+  bash
+  git clone https://github.com/phuphalll/dashboard-fe
+  cd dashboard-fe
+  ```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+- Preparing the .env File: The application requires certain environment variables to be set for it to function correctly. These variables are stored in a `.env` and `.env.dev`.
+  ```
+  REACT_APP_API_URL=<backend-url>
+  ```
+  - REACT_APP_API_URL: This is the base URL of your API. Replace it with the correct URL if it's different.
+- Install Dependencies: Run the following command in the project directory to install the necessary dependencies:
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+  ```
+  npm install
+  ```
 
-## Learn More
+### Running the Application Locally
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+After setting up your development environment, you can run the application locally:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- Development Server: To start the development server, run:
+
+  ```
+  npm start
+  ```
+
+  This will start the server on http://localhost:3000 by default. You can access the application by navigating to this URL in your web browser.
+
+- Using Environment Variables:Development with utilizes .env.dev file. Note: You may have to setup `.env.dev` file
+  ```
+  npm run dev
+  ```
